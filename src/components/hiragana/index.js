@@ -3,7 +3,7 @@ import axios from "axios"
 import "./style.scss"
 import { useClipboard } from 'use-clipboard-copy';
 
-const uri = process.env.GOO_API_URL
+const apiUrl = 'https://labs.goo.ne.jp/api/hiragana'
 const app_id = process.env.GOO_API_APP_ID
 
 const KanaDataRequire = () => {
@@ -20,7 +20,7 @@ const KanaDataRequire = () => {
 
   useEffect( () => {
     inputRef.current.focus()
-    axios.post(uri, {
+    axios.post(apiUrl, {
       "app_id": app_id,
       "request_id":"record003",
       "sentence": `${kanjiFromButtonClick}`,
