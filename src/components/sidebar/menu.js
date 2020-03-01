@@ -14,7 +14,9 @@ const MenuList = () => {
         <li>日语的形态要素解析</li>
       </Link>
 
-      <li>检测固有表現</li>
+      <Link to="/entity/">
+        <li>检测固有表現</li>
+      </Link>
       <li>日语关键词抽出</li>
       <li>日语文章出现的时间格式化</li>
       <li>日语文本对应的相似性</li>
