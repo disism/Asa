@@ -17,7 +17,10 @@ const MenuList = () => {
       <Link to="/entity/">
         <li>检测固有表現</li>
       </Link>
-      <li>日语关键词抽出</li>
+
+      <Link to="/keyword/">
+        <li>日语关键词抽出</li>
+      </Link>
       <li>日语文章出现的时间格式化</li>
       <li>日语文本对应的相似性</li>
     </ul>
