@@ -1,0 +1,12 @@
+/**
+  Home page body style
+ */
+
+.list-of-services {
+  margin: 1rem;
+  display: flex;
+  ul {
+    margin: 0;
+    list-style: lower-roman;
+  }
+}

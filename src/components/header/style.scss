@@ -1,0 +1,79 @@
+@import "../../assets/scss/var.scss";
+
+.header {
+  $header-height: 3rem;
+  height: $header-height;
+  margin: 1rem;
+  .header-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    a {
+      display: flex;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .header-logo {
+      a {
+        display: flex;
+        align-items: center;
+      }
+      img {
+        margin-right: 1rem;
+        margin-bottom: 0;
+      }
+    }
+    .header-github {
+      @media (max-width: $mobile) {
+        display: none;
+      }
+    }
+  }
+  button {
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    padding: .5rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
+    color: black;
+    background-color: white;
+
+  }
+  .mobile-menu {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+}
+
+.header-menu {
+  margin: 1rem;
+  background-color: white;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 2rem 0 0 0;
+    a {
+      //text-decoration: none;
+      &[aria-current="page"] {
+        li {
+          padding: 0.5rem 0.5rem;
+          background: $torinoko;
+          border-radius: 7px;
+        }
+      }
+      &:visited {
+        color: rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    li {
+      padding: 0.5rem 0.5rem;
+      margin-bottom: 0;
+    }
+  }
+}

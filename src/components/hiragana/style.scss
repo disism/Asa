@@ -1,0 +1,33 @@
+@import "src/assets/scss/var.scss";
+
+.conversion-block {
+  .textarea {
+    textarea {
+      width: 100%;
+      resize: vertical;
+      border: 0.2rem solid antiquewhite;
+      height: 20vw;
+      &:focus {
+        outline: none;
+        border: 0.2rem dashed #0B346E;
+      }
+      @media (max-width: $mobile) {
+        width: 100%;
+        height: 50vw;
+      }
+    }
+  }
+  .hiragana-out-put {
+    height: 20vw;
+    overflow: auto;
+    border: 0.2rem solid antiquewhite;
+    @media (max-width: $mobile) {
+      width: 100%;
+      height: 50vw;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    margin-top: 2rem;
+  }
+}
