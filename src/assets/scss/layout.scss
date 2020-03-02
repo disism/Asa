@@ -1,5 +1,7 @@
+$font-family: Georgia1, Georgia, "SimSun", "Yu Gothic", "STSong", serif;
+
 html {
-  font-family: sans-serif;
+  font-family: $font-family;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -200,7 +202,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: $font-family;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -630,6 +632,7 @@ pre tt:after {
   width: 100%;
   @media (max-width: 425px) {
     margin: 0 1rem;
+    margin-top: 1rem;
   }
 }
 
