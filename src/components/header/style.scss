@@ -27,7 +27,7 @@
       }
     }
     .header-github {
-      @media (max-width: $mobile) {
+      @media (max-width: 769px  ) {
         display: none;
       }
     }
@@ -44,6 +44,8 @@
 
   }
   .mobile-menu {
+    background-color: whitesmoke;
+    border-radius: 4px;
     @media (min-width: 769px) {
       display: none;
     }
@@ -57,6 +59,7 @@
     list-style: none;
     margin: 0;
     padding: 2rem 0 0 0;
+    border-bottom: 1px dashed antiquewhite;
     a {
       //text-decoration: none;
       &[aria-current="page"] {

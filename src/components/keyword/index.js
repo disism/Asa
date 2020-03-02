@@ -26,7 +26,7 @@ function KeywordRequireData() {
 
   return (
     <>
-
+      <div>关键词功能稍后推出</div>
     </>
   )
 }

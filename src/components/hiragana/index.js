@@ -43,6 +43,11 @@ const KanaDataRequire = () => {
   }
   return (
     <>
+      <section className="hir-example">
+        <div>例如输入：漢字</div>
+        <div>会转换成：かんじ</div>
+      </section>
+      <br />
       <section className="conversion-block">
         <section className="textarea">
           <textarea

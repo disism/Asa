@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 
-const apiUrl = 'https://labs.goo.ne.jp/api/entity'
+const apiUrl = 'https://labs.goo.ne.jp/api/chrono'
 const app_id = process.env.GOO_API_APP_ID
 
 function ChronoDataRequire() {
-  const [entityData, setEntityData] = useState([''])
-  const [textChangeValue, setChangeTextValue] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
-  const [resState, setResState] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
+  const [chronoData, setChronoData] = useState([''])
+  const [textChangeValue, setChangeTextValue] = useState('今日')
+  const [resState, setResState] = useState('今日')
 
   useEffect(() => {
     axios.post(apiUrl,{
       "app_id": app_id,
-      "request_id":"record002",
+      "request_id":"record007",
       "sentence": `${resState}`,
     })
       .then(res => {
-        setEntityData(res.data)
+        setChronoData(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -27,24 +27,26 @@ function ChronoDataRequire() {
   const handleChangeClick = ()=> {
     setResState(textChangeValue)
   }
-  console.log(entityData.ne_list)
+  console.log(chronoData)
   return (
     <>
-      {entityData.ne_list}
-      <hr />
-      <div>PSN: 人</div>
-      <div>TIM: 时间</div>
-      <div>LOC: 地址</div>
+      <section className="chr-example">
+        <div>例如输入：今日の10時半に出かけます。</div>
+        <div>会解析成： 今日（你当前时间） 10時半（你当前时间的）T10:30</div>
+      </section>
       <br/>
-      <textarea
-        type="text"
-        value={textChangeValue}
-        onChange={e => setChangeTextValue(e.target.value)}
-      />
+      {chronoData.datetime_list}
+      <div className="chr-input">
+        <textarea
+          type="text"
+          value={textChangeValue}
+          onChange={e => setChangeTextValue(e.target.value)}
+        />
+      </div>
       <br/>
       <button type="button" onClick={handleChangeClick}>提交</button>
     </>
   )
 }
 
-export default EntityDataRequire
+export default ChronoDataRequire
