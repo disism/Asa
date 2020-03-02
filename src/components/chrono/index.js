@@ -5,7 +5,7 @@ import axios from "axios"
 const apiUrl = 'https://labs.goo.ne.jp/api/entity'
 const app_id = process.env.GOO_API_APP_ID
 
-function EntityDataRequire() {
+function ChronoDataRequire() {
   const [entityData, setEntityData] = useState([''])
   const [textChangeValue, setChangeTextValue] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
   const [resState, setResState] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')

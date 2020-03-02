@@ -5,9 +5,9 @@ import axios from "axios"
 const apiUrl = 'https://labs.goo.ne.jp/api/morph'
 const app_id = process.env.GOO_API_APP_ID
 function MorphologicalDataRequire() {
-  const [morpData, setMorpData] = useState([','])
-  const [nprp, setNprp] = useState('text')
-  const [sentValue, setSentValue] = useState('日本語を分析します')
+  const [morpData, setMorpData] = useState([])
+  const [nprp, setNprp] = useState('日本語')
+  const [sentValue, setSentValue] = useState('日本語')
 
   useEffect(() => {
     axios.post(apiUrl,{
@@ -26,7 +26,7 @@ function MorphologicalDataRequire() {
   const handleClick = () => {
     setSentValue(nprp)
   }
-  console.log(morpData.word_list)
+
   return (
     <>
       {morpData.word_list}

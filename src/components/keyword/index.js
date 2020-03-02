@@ -22,10 +22,11 @@ function KeywordRequireData() {
       })
   },[])
 
-  console.log(keywordData)
+  console.log(keywordData.keywords)
 
   return (
     <>
+
     </>
   )
 }
