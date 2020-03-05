@@ -21,9 +21,11 @@ function Footer() {
       <section className="footer">
         <div className="footer-desc">
           <div className="footer-thanks">
-            感谢您的访问。
-            本应用是一个面向日语研究者和爱好者的工具应用。
-            源代码在 <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">GITHUB</a>。
+            <div className="footer-welcome">
+              感谢您的访问。
+              本应用是一个面向日语研究者和爱好者的工具应用。
+              源代码在 <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">GITHUB</a>。
+            </div>
             <section className="support">
               特别感谢：
               <div className="goo">
@@ -38,7 +40,7 @@ function Footer() {
             </div>
           </div>
           <div className="footer-dev">
-            <p>本网站由 disism.com 开发。<a href="https://disism.com/about" target="_blank" rel="noopener noreferrer">了解我们</a>。 欢迎访问 disism.com 系列网站</p>
+            <p>本网站由 disism.com 开发。</p>
             <div>
               1，<a href="https://disism.com" target="_blank" rel="noopener noreferrer">disism.com</a>
               <p>官方主页，让我们去做一些真正有趣的事情。</p>

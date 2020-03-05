@@ -6,9 +6,11 @@ const apiUrl = 'https://labs.goo.ne.jp/api/entity'
 const app_id = process.env.GOO_API_APP_ID
 
 function EntityDataRequire() {
-  const [entityData, setEntityData] = useState([''])
-  const [textChangeValue, setChangeTextValue] = useState('鈴木さん')
-  const [resState, setResState] = useState('鈴木さん')
+  const [entityData, setEntityData] = useState([])
+  const [textChangeValue, setChangeTextValue] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
+  const [resState, setResState] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
+  const [isLoading, setIsLoading] = useState(true)
+
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -19,6 +21,7 @@ function EntityDataRequire() {
       "sentence": `${resState}`,
     })
       .then(res => {
+        setIsLoading(false)
         setEntityData(res.data)
       })
       .catch(err => {
@@ -29,15 +32,37 @@ function EntityDataRequire() {
   const handleChangeClick = ()=> {
     setResState(textChangeValue)
   }
-  console.log(entityData.ne_list)
+  const entityResult = entityData.ne_list
+  console.log(entityResult)
+
   return (
     <>
-      <section className="ent-example">
-        <div>例如输入：鈴木さんがきょうの9時30分に横浜に行きます。</div>
-        <div>会出现：鈴木 PSN 9時30分 TIM 横浜 LOC (PSN = 人， TIM = 时间， LOC = 地点)</div>
-      </section>
-      {entityData.ne_list}
-      <br/>
+
+      <div>输出</div>
+      {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<div className="entity-output">
+        {entityResult && entityResult.map((item, idx) => {
+          return (
+            <div
+              className="entity-output-body"
+              key={idx}
+            >
+              <div className="named">{item[0]}</div>
+              <div className="entity">{item[1]}</div>
+            </div>
+          )
+        })}
+      </div>}
+      <div>说明</div>
+      <div style={{
+        border: `2px solid #6A4C9C`,
+        borderRadius: `0.3rem`,
+        padding: `0.3rem`,
+        margin: `0.3rem 0`
+      }}>
+        ART(人工物名)、ORG(組織名)、PSN(人名)、LOC(地名)、DAT(日付表現)、
+        TIM(時刻表現)、MNY(金額表現)、PCT(割合表現)。
+      </div>
+      <div>文本输入</div>
       <section className="ent-paragraph">
         <textarea
           ref={inputRef}

@@ -10,7 +10,7 @@ const KanaDataRequire = () => {
   const [hiraganadata, setHiraganaData] = useState({})
   const [kanji, setKanji] = useState('漢字')
   const [kanjiFromButtonClick, setkanjiFromButtonClick] = useState('漢字')
-
+  const [isLoading, setIsLoading] = useState(true)
 
   const clipboard = useClipboard({
     copiedTimeout: 600, // timeout duration in milliseconds
@@ -27,6 +27,7 @@ const KanaDataRequire = () => {
       "output_type":"hiragana",
     })
       .then(res => {
+        setIsLoading(false)
         setHiraganaData(res.data)
       })
       .catch(error => {
@@ -43,11 +44,7 @@ const KanaDataRequire = () => {
   }
   return (
     <>
-      <section className="hir-example">
-        <div>例如输入：漢字</div>
-        <div>会转换成：かんじ</div>
-      </section>
-      <br />
+      <div style={{marginBottom: `0.3rem`}}>输入汉字</div>
       <section className="conversion-block">
         <section className="textarea">
           <textarea
@@ -64,11 +61,10 @@ const KanaDataRequire = () => {
         <button onClick={clipboard.copy}>
           {clipboard.copied ? '复制成功' : '复制输出的内容'}
         </button>
-
-
-        <section className="hiragana-out-put">
+        <div style={{margin: `0.3rem 0`}}>输出结果</div>
+        {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<section className="hiragana-out-put">
           <input ref={clipboard.target} value={hiraganadata.converted || ''} readOnly />
-        </section>
+        </section>}
 
       </section>
     </>
