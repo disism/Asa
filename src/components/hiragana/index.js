@@ -62,8 +62,8 @@ const KanaDataRequire = () => {
           {clipboard.copied ? '复制成功' : '复制输出的内容'}
         </button>
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
-        {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<section className="hiragana-out-put">
-          <input ref={clipboard.target} value={hiraganadata.converted || ''} readOnly />
+        {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> : <section className="hiragana-out-put">
+          <textarea ref={clipboard.target} value={hiraganadata.converted || ''} readOnly />
         </section>}
 
       </section>
