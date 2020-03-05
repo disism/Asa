@@ -5,6 +5,7 @@
     width: 25vw;
     margin: 0;
     list-style: none;
+
     a {
       text-decoration: none;
       &[aria-current="page"] {
@@ -23,12 +24,23 @@
     li {
       padding: 0.5rem 2rem;
     }
-    
     @media (max-width: $desktop) {
       display: none;
     }
   }
   @media (max-width: $desktop) {
     margin: 0;
+  }
+}
+.home-list-layout{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    white-space:nowrap;
+    @media (min-width: 769px) {
+      display: none;
+    }
   }
 }

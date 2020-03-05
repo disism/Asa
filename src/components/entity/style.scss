@@ -1,15 +1,43 @@
 @import "src/assets/scss/var.scss";
 
+$margin-size: 0.3rem;
+
+.entity-output {
+  margin-top: $margin-size;
+  margin-bottom: $margin-size;
+  border: 2px solid chocolate;
+  border-radius: $margin-size;
+  padding: $margin-size;
+  .entity-output-body {
+    display: flex;
+    .named {
+      margin: $margin-size 0;
+      padding: 0 1rem 0 0.3rem;
+      border: 1px solid #6C6A2D;
+      border-right: none;
+    }
+    .entity {
+      margin: $margin-size 0;
+      color: white;
+      padding: 0 0.5rem;
+      background-color: #D75455;
+    }
+  }
+
+}
 .ent-paragraph {
+  margin-top: $margin-size;
   textarea {
     width: 100%;
     resize: vertical;
-    border: 0.2rem solid antiquewhite;
+    border: 2px solid antiquewhite;
     height: 20vw;
+    border-radius: 0.3rem;
+    padding: $margin-size;
 
     &:focus {
       outline: none;
-      border: 0.2rem dashed #0B346E;
+      border: 2px dashed #0B346E;
     }
 
     @media (max-width: $mobile) {
@@ -17,7 +45,4 @@
       height: 50vw;
     }
   }
-}
-.ent-example {
-  border-bottom: 1px solid antiquewhite;
 }

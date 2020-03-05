@@ -18,6 +18,9 @@
     justify-content: space-between;
     .footer-thanks {
       margin-right: 2rem;
+      .footer-welcome {
+        margin-bottom: 1rem;
+      }
       @media (max-width: $mobile) {
         margin: 0;
       }
@@ -34,7 +37,7 @@
   .footer-goo-img {
     width: 10rem;
     margin: 0.5rem 0 0 0;
-    border: 2px solid antiquewhite;
+    border: 1px dashed #F596AA;
   }
 }
 .gatsby {

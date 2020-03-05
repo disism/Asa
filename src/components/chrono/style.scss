@@ -1,15 +1,41 @@
 @import "src/assets/scss/var.scss";
 
+$margin-size: 0.3rem;
+
+.chrono-output {
+  border-radius: $margin-size;
+  border: 2px solid #9e7a7a;
+  margin: $margin-size 0;
+  padding: $margin-size;
+  .chrono-output-list {
+    display: flex;
+    margin: $margin-size;
+
+    .input-date {
+      background-color: antiquewhite;
+      border-right: 1px solid #C7802D;
+      padding: 0 $margin-size;
+    }
+    .output-date {
+      border: 1px solid antiquewhite;
+      border-left: none;
+      padding: 0 $margin-size;
+    }
+  }
+}
+
 .chr-input {
   textarea {
     width: 100%;
     resize: vertical;
-    border: 0.2rem solid antiquewhite;
+    border: 2px solid antiquewhite;
     height: 20vw;
+    padding: $margin-size;
 
     &:focus {
       outline: none;
-      border: 0.2rem dashed #0B346E;
+      border: 2px dashed $rurikon;
+      border-radius: $margin-size;
     }
 
     @media (max-width: $mobile) {
@@ -17,8 +43,4 @@
       height: 50vw;
     }
   }
-}
-
-.chr-example {
-  border-bottom: 1px solid antiquewhite;
 }

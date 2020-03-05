@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 
@@ -6,17 +6,22 @@ const apiUrl = 'https://labs.goo.ne.jp/api/chrono'
 const app_id = process.env.GOO_API_APP_ID
 
 function ChronoDataRequire() {
-  const [chronoData, setChronoData] = useState([''])
-  const [textChangeValue, setChangeTextValue] = useState('今日')
-  const [resState, setResState] = useState('今日')
+  const [chronoData, setChronoData] = useState({chronoData: []})
+  const [textChangeValue, setChangeTextValue] = useState('今日の10時半に出かけます。')
+  const [resState, setResState] = useState('今日の10時半に出かけます。')
+  const [isLoading, setIsLoading] = useState(true)
 
+  const inputRef = useRef(null)
   useEffect(() => {
+    inputRef.current.focus()
+
     axios.post(apiUrl,{
       "app_id": app_id,
       "request_id":"record007",
       "sentence": `${resState}`,
     })
       .then(res => {
+        setIsLoading(false)
         setChronoData(res.data)
       })
       .catch(err => {
@@ -27,17 +32,28 @@ function ChronoDataRequire() {
   const handleChangeClick = ()=> {
     setResState(textChangeValue)
   }
-  console.log(chronoData)
+  const dataRes = chronoData.datetime_list
+
   return (
     <>
-      <section className="chr-example">
-        <div>例如输入：今日の10時半に出かけます。</div>
-        <div>会解析成： 今日（你当前时间） 10時半（你当前时间的）T10:30</div>
-      </section>
-      <br/>
-      {chronoData.datetime_list}
+      <div>结果输出</div>
+      {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> : <div className="chrono-output">
+        {dataRes && dataRes.map((item, idx) => {
+            return (
+              <div key={idx}>
+                <div className="chrono-output-list">
+                  <div className="input-date">{item[0]}</div>
+                  <div className="output-date">{item[1]}</div>
+                </div>
+              </div>
+            )
+        })}
+
+      </div>}
+      <div style={{marginBottom: `0.3rem`}}>文本输入</div>
       <div className="chr-input">
         <textarea
+          ref={inputRef}
           type="text"
           value={textChangeValue}
           onChange={e => setChangeTextValue(e.target.value)}

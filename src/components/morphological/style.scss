@@ -1,17 +1,25 @@
 @import "src/assets/scss/var.scss";
 
-.mor-example {
-  border-bottom: 1px solid antiquewhite;
+$margin-size: 0.3rem;
+
+.norp-output {
+  margin: $margin-size 0;
+  border: 2px solid #967249;
+  padding: $margin-size;
+  border-radius: $margin-size;
 }
 .input-box {
   textarea {
     width: 100%;
     resize: vertical;
-    border: 0.2rem solid antiquewhite;
+    border: 2px solid #33A6B8;
+    padding: $margin-size;
+    margin-top: $margin-size;
     height: 20vw;
+    border-radius: $margin-size;
     &:focus {
       outline: none;
-      border: 0.2rem dashed #0B346E;
+      border: 2px dashed #0B346E;
     }
     @media (max-width: $mobile) {
       width: 100%;

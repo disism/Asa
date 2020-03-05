@@ -8,22 +8,22 @@ const MenuList = () => {
         <li>首页</li>
       </Link>
       <Link to="/hiragana/">
-        <li>汉字转换成假名</li>
+        <li>ひらがな化</li>
       </Link>
       <Link to="/morphological/">
-        <li>形态要素解析</li>
+        <li>词素解析</li>
       </Link>
 
       <Link to="/entity/">
-        <li>检测命名实体</li>
+        <li>固有表現抽出</li>
       </Link>
 
       <Link to="/keyword/">
-        <li>关键词抽出</li>
+        <li>キーワード抽出</li>
       </Link>
 
       <Link to="/chrono/">
-        <li>时间格式化</li>
+        <li>時刻情報正規化</li>
       </Link>
     </ul>
   )
