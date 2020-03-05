@@ -24,7 +24,10 @@ function Footer() {
             <div className="footer-welcome">
               感谢您的访问。
               本应用是一个面向日语研究者和爱好者的工具应用。
-              源代码在 <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">GITHUB</a>。
+              源代码在
+              <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">
+                GITHUB
+              </a>。
             </div>
             <section className="support">
               特别感谢：
