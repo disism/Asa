@@ -1,15 +1,18 @@
 @import "src/assets/scss/var.scss";
 
+$margin-size: 0.3rem;
 .conversion-block {
   .textarea {
     textarea {
+      padding: $margin-size;
       width: 100%;
       resize: vertical;
-      border: 0.2rem solid antiquewhite;
+      border: 2px solid antiquewhite;
       height: 20vw;
+      border-radius: $margin-size;
       &:focus {
         outline: none;
-        border: 0.2rem dashed #0B346E;
+        border: 2px dashed #0B346E;
       }
       @media (max-width: $mobile) {
         width: 100%;
@@ -18,9 +21,18 @@
     }
   }
   .hiragana-out-put {
+    padding: $margin-size;
     height: 20vw;
     overflow: auto;
-    border: 0.2rem solid antiquewhite;
+    border: 2px solid antiquewhite;
+    border-radius: $margin-size;
+    textarea {
+      width: 100%;
+      height: 97%;
+      border: none;
+      outline: none;
+      resize: none;
+    }
     @media (max-width: $mobile) {
       width: 100%;
       height: 50vw;

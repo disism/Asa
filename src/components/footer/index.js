@@ -21,31 +21,35 @@ function Footer() {
       <section className="footer">
         <div className="footer-desc">
           <div className="footer-thanks">
-            感谢您的访问。
-            本网站是一个面向日语专业人员和爱好者的工具网站。
-            源代码托管在 <a href="https://github.com/disism/asa">GITHUB</a>,
-            如果您喜欢我们的内容，欢迎参与进来。
+            <div className="footer-welcome">
+              感谢您的访问。
+              本应用是一个面向日语研究者和爱好者的工具应用。
+              源代码在
+              <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">
+                GITHUB
+              </a>。
+            </div>
             <section className="support">
               特别感谢：
               <div className="goo">
-                <a href="http://www.goo.ne.jp/">
-                  <Img fluid={data.gooLogo.childImageSharp.fluid} title="supported by goo" />
+                <a href="http://www.goo.ne.jp/" target="_blank" rel="noopener noreferrer">
                   supported by goo
                 </a>
               </div>
               , 提供的 API。
             </section>
+            <div className="footer-goo-img">
+              <Img fluid={data.gooLogo.childImageSharp.fluid} title="supported by goo" />
+            </div>
           </div>
           <div className="footer-dev">
-            本网站由 <a href="https://disism.com">disism.com</a> 开发。
-            欢迎访问 disism.com 系列网站
+            <p>本网站由 disism.com 开发。</p>
             <div>
-              <a href="https://disism.com">disism.com</a>
-              <p>官方主页，专注 Web 开发。</p>
+              1，<a href="https://disism.com" target="_blank" rel="noopener noreferrer">disism.com</a>
+              <p>官方主页，让我们去做一些真正有趣的事情。</p>
             </div>
-
             <div>
-              <a href="https://install.disism.com/">Install.disism.com</a>
+              2，<a href="https://install.disism.com/" target="_blank" rel="noopener noreferrer">Install.disism.com</a>
               <p>面向 Linux 的爱好者和新手的教程网站，
                 其中发布有关服务器操作，生产环境部署，
                 新技术和安全性的文章和教程。</p>
@@ -54,9 +58,9 @@ function Footer() {
         </div>
       </section>
       <section className="gatsby">
-        © {new Date().getFullYear()}, <a href="https://disism.com">disism.com</a>, Built with
+        © {new Date().getFullYear()}, Built with
         {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener noreferrer">Gatsby</a>
       </section>
     </>
   )

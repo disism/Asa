@@ -29,7 +29,7 @@ const Header = ({ siteTitle }) => {
             </Link>
           </div>
           <div className="header-github">
-            <a href="https://github.com/disism/asa">Github</a>
+            <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">Github</a>
           </div>
 
           <button
