@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
+import Message from "../message"
 
 const apiUrl = 'https://labs.goo.ne.jp/api/chrono'
 const app_id = process.env.GOO_API_APP_ID
@@ -36,6 +37,7 @@ function ChronoDataRequire() {
 
   return (
     <>
+      <Message/>
       <div>结果输出</div>
       {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> : <div className="chrono-output">
         {dataRes && dataRes.map((item, idx) => {
