@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import axios from "axios"
 
 import "./style.scss"
+import Message from "../message"
 
 const apiUrl = 'https://labs.goo.ne.jp/api/keyword'
 const app_id = process.env.GOO_API_APP_ID
@@ -42,7 +43,7 @@ function KeywordRequireData() {
 
   return (
     <>
-
+      <Message/>
       <div style={{marginBottom: `0.3rem`}}>关键词输出</div>
       {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<div className="keyword-output">
         {keywordData.keywords.map((item,idx) => {

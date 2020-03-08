@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
+import Message from "../message"
 
 const apiUrl = 'https://labs.goo.ne.jp/api/morph'
 const app_id = process.env.GOO_API_APP_ID
@@ -35,6 +36,7 @@ function MorphologicalDataRequire() {
 
   return (
     <>
+      <Message/>
       <div>输入文本</div>
       <div className="input-box">
         <textarea

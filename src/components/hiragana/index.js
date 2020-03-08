@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import "./style.scss"
 import { useClipboard } from 'use-clipboard-copy';
+import Message from "../message"
 
 const apiUrl = 'https://labs.goo.ne.jp/api/hiragana'
 const app_id = process.env.GOO_API_APP_ID
@@ -44,6 +45,7 @@ const KanaDataRequire = () => {
   }
   return (
     <>
+      <Message/>
       <div style={{marginBottom: `0.3rem`}}>输入汉字</div>
       <section className="conversion-block">
         <section className="textarea">

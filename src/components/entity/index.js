@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
+import Message from "../message"
 
 const apiUrl = 'https://labs.goo.ne.jp/api/entity'
 const app_id = process.env.GOO_API_APP_ID
@@ -37,7 +38,7 @@ function EntityDataRequire() {
 
   return (
     <>
-
+      <Message/>
       <div>输出</div>
       {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<div className="entity-output">
         {entityResult && entityResult.map((item, idx) => {
