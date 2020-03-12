@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 import Message from "../message"
+import { APP_ID, baseUrl } from "../../api/config"
 
-const apiUrl = 'https://labs.goo.ne.jp/api/morph'
-const app_id = process.env.GOO_API_APP_ID
 function MorphologicalDataRequire() {
   const [morpData, setMorpData] = useState([])
   const [nprp, setNprp] = useState('日本語を分析します')
@@ -13,8 +12,8 @@ function MorphologicalDataRequire() {
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     textRef.current.focus()
-    axios.post(apiUrl,{
-      "app_id": app_id,
+    axios.post(`${baseUrl}/morph`,{
+      "app_id": APP_ID,
       "request_id":"record001",
       "sentence": `${sentValue}`,
     })

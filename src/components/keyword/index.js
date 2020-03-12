@@ -3,9 +3,8 @@ import axios from "axios"
 
 import "./style.scss"
 import Message from "../message"
+import { APP_ID, baseUrl } from "../../api/config"
 
-const apiUrl = 'https://labs.goo.ne.jp/api/keyword'
-const app_id = process.env.GOO_API_APP_ID
 
 function KeywordRequireData() {
   const [keywordData, setKeywordData] = useState({keywords:[]})
@@ -20,8 +19,8 @@ function KeywordRequireData() {
   const inputRef = useRef(null)
   useEffect(() => {
     inputRef.current.focus()
-    axios.post(apiUrl, {
-      "app_id": app_id,
+    axios.post(`${baseUrl}/keyword`, {
+      "app_id": APP_ID,
       "request_id":"record006",
       "title": `${keywordTitleValue}`,
       "body": `${keywordBodyValue}`,

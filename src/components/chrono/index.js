@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 import Message from "../message"
+import { APP_ID, baseUrl } from "../../api/config"
 
-const apiUrl = 'https://labs.goo.ne.jp/api/chrono'
-const app_id = process.env.GOO_API_APP_ID
 
 function ChronoDataRequire() {
   const [chronoData, setChronoData] = useState({chronoData: []})
@@ -16,8 +15,8 @@ function ChronoDataRequire() {
   useEffect(() => {
     inputRef.current.focus()
 
-    axios.post(apiUrl,{
-      "app_id": app_id,
+    axios.post(`${baseUrl}/chrono`,{
+      "app_id": APP_ID,
       "request_id":"record007",
       "sentence": `${resState}`,
     })

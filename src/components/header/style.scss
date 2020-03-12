@@ -41,7 +41,7 @@
     margin-bottom: 0;
     color: black;
     background-color: white;
-
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   }
   .mobile-menu {
     background-color: whitesmoke;
@@ -61,12 +61,13 @@
     padding: 2rem 0 0 0;
     border-bottom: 1px dashed antiquewhite;
     a {
-      //text-decoration: none;
+      text-decoration: none;
       &[aria-current="page"] {
         li {
           padding: 0.5rem 0.5rem;
           background-color: whitesmoke;
           border-radius: 7px;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
         }
       }
       &:visited {
@@ -76,7 +77,11 @@
 
     li {
       padding: 0.5rem 0.5rem;
-      margin-bottom: 0;
+      margin: 0.5rem 0;
+      border-radius: 7px;
+      &:active {
+        box-shadow: 0 0 0 2px $umezome;
+      }
     }
   }
 }
