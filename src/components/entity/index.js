@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 import Message from "../message"
-
-const apiUrl = 'https://labs.goo.ne.jp/api/entity'
-const app_id = process.env.GOO_API_APP_ID
+import { APP_ID, baseUrl } from "../../api/config"
 
 function EntityDataRequire() {
   const [entityData, setEntityData] = useState([])
@@ -16,8 +14,8 @@ function EntityDataRequire() {
 
   useEffect(() => {
     inputRef.current.focus()
-    axios.post(apiUrl,{
-      "app_id": app_id,
+    axios.post(`${baseUrl}/entity`,{
+      "app_id": APP_ID,
       "request_id":"record002",
       "sentence": `${resState}`,
     })

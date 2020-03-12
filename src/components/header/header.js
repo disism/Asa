@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React, { useState } from "react"
 import "./style.scss"
 import Logo from "../../assets/icons/icons8-cat.svg"
-import MenuList from "../sidebar/menu"
+import MenuList from "../menu/menu"
 
 const MenuListFunc = () => {
   return (
