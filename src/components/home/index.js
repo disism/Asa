@@ -4,7 +4,6 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
 function Home() {
-
   const data = useStaticQuery(graphql`
     query {
       gooLogo: file(relativePath: { eq: "sgoo.png" }) {
@@ -16,6 +15,7 @@ function Home() {
       }
     }
   `)
+
 
   const ListOfServices = [
     {
@@ -50,46 +50,48 @@ function Home() {
     },
   ]
 
-
   return (
     <section className="list-of-services">
-      <h1>功能一览</h1>
-      <ul>
-        {ListOfServices && ListOfServices.map((items, idx) => {
-          return (
-            <li key={idx}>
-              <Link to={items.link}>
-                <div>{items.list_number}</div>
-                <div className="english-name">{items.englist_title}</div>
-                <div>{items.desc}</div>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
-      <hr />
 
-      <p>
+      <section>
+        <h1>功能一览</h1>
+        <ul>
+          {ListOfServices && ListOfServices.map((items, idx) => {
+            return (
+              <li key={idx}>
+                <Link to={items.link}>
+                  <div>{items.list_number}</div>
+                  <div className="english-name">{items.englist_title}</div>
+                  <div>{items.desc}</div>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+
+      <section style={{ padding: `1rem 0` }}>
         感谢您的访问。
-        本应用是一个面向日语研究者和爱好者的工具应用。
+
+        本应用由
+        <a href="https://disism.com" target="_blank" rel="noopener noreferrer"> disism.com </a>
+        开发，
+
+        本应用是一个面向日语专业的研究人员和爱好者的开源 WEB 应用程序。
+
         源代码在
         <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">
-          GITHUB
+           GITHUB
         </a>。
-      </p>
-      <p>
-        特别感谢：
+      </section>
+
+      <section className="goo">
+        <div className="goo-image">
           <a href="http://www.goo.ne.jp/" target="_blank" rel="noopener noreferrer">
-            supported by goo
-          </a> ,
-          <a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer">
-            Amazon Web Services
+            <Img fluid={data.gooLogo.childImageSharp.fluid} title="supported by goo" />
           </a>
-        提供的 API。
-      </p>
-      <div className="goo-image">
-        <Img fluid={data.gooLogo.childImageSharp.fluid} title="supported by goo" />
-      </div>
+        </div>
+      </section>
     </section>
   )
 }
