@@ -1,18 +1,5 @@
 @import "src/assets/scss/var.scss";
 
-.footer {
-  margin: 1rem;
-  border-top: 2px dashed $torinoko;
-  padding-top: 1rem;
-  .support {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    div:not(:first-child){
-      margin-left: 1rem;
-    }
-  }
-}
 .gatsby {
   margin: 1rem;
 }
