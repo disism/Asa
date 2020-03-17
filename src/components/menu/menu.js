@@ -27,6 +27,10 @@ const MenuList = () => {
       "link": "/chrono/",
       "name": "時刻情報正規化"
     },
+    {
+      "link": "/about",
+      "name": "关于本站"
+    }
   ]
   return (
     <ul>

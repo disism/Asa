@@ -12,9 +12,9 @@ function ChronoDataRequire() {
   const [isLoading, setIsLoading] = useState(true)
 
   const inputRef = useRef(null)
+
   useEffect(() => {
     inputRef.current.focus()
-
     axios.post(`${baseUrl}/chrono`,{
       "app_id": APP_ID,
       "request_id":"record007",
