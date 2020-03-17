@@ -70,21 +70,6 @@ function Home() {
         </ul>
       </section>
 
-      <section style={{ padding: `1rem 0` }}>
-        感谢您的访问。
-
-        本应用由
-        <a href="https://disism.com" target="_blank" rel="noopener noreferrer"> disism.com </a>
-        开发，
-
-        本应用是一个面向日语专业的研究人员和爱好者的开源 WEB 应用程序。
-
-        源代码在
-        <a href="https://github.com/disism/asa" target="_blank" rel="noopener noreferrer">
-           GITHUB
-        </a>。
-      </section>
-
       <section className="goo">
         <div className="goo-image">
           <a href="http://www.goo.ne.jp/" target="_blank" rel="noopener noreferrer">
