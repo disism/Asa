@@ -6,9 +6,9 @@ import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 
 const KanaDataRequire = () => {
-  const [hiraganadata, setHiraganaData] = useState({})
+  const [fetchHiraganaData, setFetchHiraganaData] = useState({})
   const [kanji, setKanji] = useState('漢字')
-  const [kanjiFromButtonClick, setkanjiFromButtonClick] = useState('漢字')
+  const [ChangeKanjiValue, setChangeKanjiValue] = useState('漢字')
   const [isLoading, setIsLoading] = useState(true)
 
   const clipboard = useClipboard({
@@ -22,21 +22,20 @@ const KanaDataRequire = () => {
     axios.post(`${baseUrl}/hiragana`, {
       "app_id": APP_ID,
       "request_id":"record003",
-      "sentence": `${kanjiFromButtonClick}`,
+      "sentence": `${ChangeKanjiValue}`,
       "output_type":"hiragana",
     })
       .then(res => {
         setIsLoading(false)
-        setHiraganaData(res.data)
+        setFetchHiraganaData(res.data)
       })
       .catch(error => {
         console.log(error)
       })
-  },[kanjiFromButtonClick])
-
+  },[ChangeKanjiValue])
 
   const handleClick = () => {
-    setkanjiFromButtonClick(kanji)
+    setChangeKanjiValue(kanji)
   }
   const handleClickCleanInput = () => {
     inputRef.current.value = ''
@@ -61,9 +60,10 @@ const KanaDataRequire = () => {
         <button onClick={clipboard.copy}>
           {clipboard.copied ? '复制成功' : '复制输出的内容'}
         </button>
+
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
         {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> : <section className="hiragana-out-put">
-          <textarea ref={clipboard.target} value={hiraganadata.converted || ''} readOnly />
+          <textarea ref={clipboard.target} value={fetchHiraganaData.converted || ''} readOnly />
         </section>}
 
       </section>
