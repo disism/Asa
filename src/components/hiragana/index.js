@@ -1,24 +1,45 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useReducer, useRef, useState } from "react"
 import axios from "axios"
 import "./style.scss"
 import { useClipboard } from 'use-clipboard-copy';
 import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 
+const initialState = {
+  data: {},
+  error: ''
+}
+const reducer =(state, action) => {
+  switch (action.type) {
+    case 'FETCH_SUCCESS':
+      return {
+        data: action.payload,
+        error: ''
+      }
+    case 'FETCH_ERROR':
+      return {
+        data: {},
+        error: 'REQUEST ERROR!'
+      }
+    default:
+      return state
+
+  }
+}
 const KanaDataRequire = () => {
-  const [fetchHiraganaData, setFetchHiraganaData] = useState({})
   const [kanji, setKanji] = useState('漢字')
   const [ChangeKanjiValue, setChangeKanjiValue] = useState('漢字')
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const clipboard = useClipboard({
     copiedTimeout: 600, // timeout duration in milliseconds
   });
 
   const inputRef = useRef(null)
-
+  const [state, dispatch] = useReducer(reducer, initialState)
   useEffect( () => {
     inputRef.current.focus()
+    setIsLoading(true)
     axios.post(`${baseUrl}/hiragana`, {
       "app_id": APP_ID,
       "request_id":"record003",
@@ -27,10 +48,10 @@ const KanaDataRequire = () => {
     })
       .then(res => {
         setIsLoading(false)
-        setFetchHiraganaData(res.data)
+        dispatch({ type: 'FETCH_SUCCESS', payload: res.data })
       })
       .catch(error => {
-        console.log(error)
+        dispatch({ type: 'FETCH_ERROR' })
       })
   },[ChangeKanjiValue])
 
@@ -40,6 +61,8 @@ const KanaDataRequire = () => {
   const handleClickCleanInput = () => {
     inputRef.current.value = ''
   }
+  const hiraganaData = state.data
+
   return (
     <>
       <Message/>
@@ -62,10 +85,12 @@ const KanaDataRequire = () => {
         </button>
 
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
-        {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> : <section className="hiragana-out-put">
-          <textarea ref={clipboard.target} value={fetchHiraganaData.converted || ''} readOnly />
-        </section>}
-
+        {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+          <section className="hiragana-out-put">
+            <textarea ref={clipboard.target} value={hiraganaData.converted || ''} readOnly />
+          </section>
+        }
+        <h1>{state.error}</h1>
       </section>
     </>
   )
