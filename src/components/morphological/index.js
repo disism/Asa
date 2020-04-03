@@ -1,17 +1,42 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useReducer, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 
+const initialState = {
+  data: [],
+  error: ''
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_SUCCESS':
+      return {
+        data: action.payload,
+        error: ''
+      }
+    case 'FETCH_ERROR':
+      return {
+        data: [],
+        error: '問題が発生したためデータリクエストを終了します！'
+      }
+    default:
+      return state
+  }
+}
+
 function MorphologicalDataRequire() {
-  const [morpData, setMorpData] = useState([])
+  const [state, dispatch] = useReducer(reducer, initialState)
+
   const [nprp, setNprp] = useState('日本語を分析します')
   const [sentValue, setSentValue] = useState('日本語を分析します')
   const textRef = useRef(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
     textRef.current.focus()
+    setIsLoading(true)
     axios.post(`${baseUrl}/morph`,{
       "app_id": APP_ID,
       "request_id":"record001",
@@ -19,10 +44,11 @@ function MorphologicalDataRequire() {
     })
       .then(res => {
         setIsLoading(false)
-        setMorpData(res.data)
+        dispatch({ type: 'FETCH_SUCCESS', payload: res.data })
       })
       .catch(err => {
-        console.log(err)
+        setIsLoading(false)
+        dispatch({ type: 'FETCH_ERROR' })
       })
   },[sentValue])
 
@@ -30,8 +56,7 @@ function MorphologicalDataRequire() {
     setSentValue(nprp)
   }
 
-  const norpRes = morpData.word_list
-  console.log(norpRes)
+  const norpRes = state.data.word_list
 
   return (
     <>
@@ -56,24 +81,24 @@ function MorphologicalDataRequire() {
             <td>片仮名</td>
           </tr>
           </thead>
-        {norpRes && norpRes.map(items => {
-          return items.map((item, idx) => {
-            return (
+          {norpRes && norpRes.map(items => {
+            return items.map((item, idx) => {
+              return (
 
                 <tbody
                   key={idx}
                 >
-                  <tr>
-                    <td>{item[0]}</td>
-                    <td>{item[1]}</td>
-                    <td>{item[2]}</td>
-                  </tr>
+                <tr>
+                  <td>{item[0]}</td>
+                  <td>{item[1]}</td>
+                  <td>{item[2]}</td>
+                </tr>
                 </tbody>
-
-            )
-          })
-        })}
-        </table>
+              )
+            })
+          })}
+          <h1>{state.error}</h1>
+          </table>
       </div>}
     </>
   )

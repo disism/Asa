@@ -1,19 +1,42 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useReducer, useRef, useState } from "react"
 import "./style.scss"
 import axios from "axios"
 import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 
+const initialState = {
+  data: { chronoData: []},
+  error: ''
+}
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case 'FETCH_SUCCESS':
+      return {
+        data: action.payload,
+        error: ''
+      }
+    case 'FETCH_ERROR':
+      return {
+        data: {},
+        error: '問題が発生したためデータリクエストを終了します！'
+      }
+    default:
+      return state
+  }
+}
 
 function ChronoDataRequire() {
-  const [chronoData, setChronoData] = useState({chronoData: []})
+  const [state, dispatch] = useReducer(reducer, initialState)
+
   const [textChangeValue, setChangeTextValue] = useState('今日の10時半に出かけます。')
   const [resState, setResState] = useState('今日の10時半に出かけます。')
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const inputRef = useRef(null)
 
   useEffect(() => {
+    setIsLoading(true)
     inputRef.current.focus()
     axios.post(`${baseUrl}/chrono`,{
       "app_id": APP_ID,
@@ -22,17 +45,18 @@ function ChronoDataRequire() {
     })
       .then(res => {
         setIsLoading(false)
-        setChronoData(res.data)
+        dispatch({ type: 'FETCH_SUCCESS', payload: res.data })
       })
       .catch(err => {
-        console.log(err)
+        setIsLoading(false)
+        dispatch({ type: 'FETCH_ERROR' })
       })
   },[resState])
 
   const handleChangeClick = ()=> {
     setResState(textChangeValue)
   }
-  const dataRes = chronoData.datetime_list
+  const dataRes = state.data.datetime_list
 
   return (
     <>
@@ -49,7 +73,7 @@ function ChronoDataRequire() {
               </div>
             )
         })}
-
+        <h1>{state.error}</h1>
       </div>}
       <div style={{marginBottom: `0.3rem`}}>文本输入</div>
       <div className="chr-input">

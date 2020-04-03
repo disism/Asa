@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useRef, useState } from "react"
 import axios from "axios"
 import "./style.scss"
-import { useClipboard } from 'use-clipboard-copy';
 import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 
@@ -19,7 +18,7 @@ const reducer =(state, action) => {
     case 'FETCH_ERROR':
       return {
         data: {},
-        error: 'REQUEST ERROR!'
+        error: '問題が発生したためデータリクエストを終了します！'
       }
     default:
       return state
@@ -31,12 +30,9 @@ const KanaDataRequire = () => {
   const [ChangeKanjiValue, setChangeKanjiValue] = useState('漢字')
   const [isLoading, setIsLoading] = useState(false)
 
-  const clipboard = useClipboard({
-    copiedTimeout: 600, // timeout duration in milliseconds
-  });
-
   const inputRef = useRef(null)
   const [state, dispatch] = useReducer(reducer, initialState)
+
   useEffect( () => {
     inputRef.current.focus()
     setIsLoading(true)
@@ -51,6 +47,7 @@ const KanaDataRequire = () => {
         dispatch({ type: 'FETCH_SUCCESS', payload: res.data })
       })
       .catch(error => {
+        setIsLoading(false)
         dispatch({ type: 'FETCH_ERROR' })
       })
   },[ChangeKanjiValue])
@@ -80,17 +77,14 @@ const KanaDataRequire = () => {
         <button type="button" onClick={handleClick}>转换</button>
         <button type="button" onClick={handleClickCleanInput}>清除输入框</button>
 
-        <button onClick={clipboard.copy}>
-          {clipboard.copied ? '复制成功' : '复制输出的内容'}
-        </button>
 
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
         {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
           <section className="hiragana-out-put">
-            <textarea ref={clipboard.target} value={hiraganaData.converted || ''} readOnly />
+            {hiraganaData.converted}
+            {state.error}
           </section>
         }
-        <h1>{state.error}</h1>
       </section>
     </>
   )
