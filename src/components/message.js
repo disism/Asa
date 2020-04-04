@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 
 const messageStyle = {
   marginBottom: `1rem`,
@@ -7,11 +7,35 @@ const messageStyle = {
   color: `white`,
   padding: `0.6rem`
 }
-function Message() {
+const closeButtonStyle = {
+  border: '1px solid #fff',
+  outline: 'none',
+  backgroundColor: '#533D5B',
+  padding: '0 1rem',
+  margin: '0 0 0 1rem'
+}
+const MessageBlock = () => {
+  const messageSection = useRef(null)
+  const handleCloseMessage = () => {
+    messageSection.current.style.display = 'none'
+    localStorage.setItem('message-close', 'message-is-close')
+  }
   return (
-    <div style={messageStyle}>
-      由于 API 被 GWF 屏蔽，中国大陆用户请使用代理访问
-    </div>
+    <section ref={messageSection}>
+      <div style={messageStyle}>
+        由于 API 被 GWF 屏蔽，中国大陆用户请使用代理访问
+        <button style={closeButtonStyle} onClick={handleCloseMessage}>关闭</button>
+      </div>
+    </section>
+  )
+}
+function Message() {
+  const messageIsClose = localStorage.getItem('message-close')
+
+  return (
+    <>
+      {!messageIsClose && <MessageBlock/>}
+    </>
   )
 }
 export default Message

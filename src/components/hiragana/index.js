@@ -3,39 +3,18 @@ import axios from "axios"
 import "./style.scss"
 import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
+import Reducer from "../reducer"
+import InitialState from "../state"
 
-const initialState = {
-  data: {},
-  error: ''
-}
-const reducer =(state, action) => {
-  switch (action.type) {
-    case 'FETCH_SUCCESS':
-      return {
-        data: action.payload,
-        error: ''
-      }
-    case 'FETCH_ERROR':
-      return {
-        data: {},
-        error: '問題が発生したためデータリクエストを終了します！'
-      }
-    default:
-      return state
-
-  }
-}
 const KanaDataRequire = () => {
   const [kanji, setKanji] = useState('漢字')
   const [ChangeKanjiValue, setChangeKanjiValue] = useState('漢字')
-  const [isLoading, setIsLoading] = useState(false)
-
   const inputRef = useRef(null)
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(Reducer, InitialState)
 
   useEffect( () => {
     inputRef.current.focus()
-    setIsLoading(true)
+    dispatch({ type: 'LOADING_TRUE' })
     axios.post(`${baseUrl}/hiragana`, {
       "app_id": APP_ID,
       "request_id":"record003",
@@ -43,11 +22,9 @@ const KanaDataRequire = () => {
       "output_type":"hiragana",
     })
       .then(res => {
-        setIsLoading(false)
         dispatch({ type: 'FETCH_SUCCESS', payload: res.data })
       })
       .catch(error => {
-        setIsLoading(false)
         dispatch({ type: 'FETCH_ERROR' })
       })
   },[ChangeKanjiValue])
@@ -79,7 +56,7 @@ const KanaDataRequire = () => {
 
 
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
-        {isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+        {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
           <section className="hiragana-out-put">
             {hiraganaData.converted}
             {state.error}
