@@ -29,8 +29,8 @@ const MessageBlock = () => {
     </section>
   )
 }
+const messageIsClose = localStorage.getItem('message-close')
 function Message() {
-  const messageIsClose = localStorage.getItem('message-close')
 
   return (
     <>
