@@ -28,6 +28,7 @@ function About() {
                 GITHUB
               </a>。
             </p>
+            <p>漢字解 API 来自 ： https://kanjiapi.dev/</p>
             <h2>disism.com</h2>
             <p>
               本应用由
