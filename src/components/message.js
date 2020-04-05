@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 const messageStyle = {
   marginBottom: `1rem`,
@@ -30,10 +30,13 @@ const MessageBlock = () => {
   )
 }
 function Message() {
-  const messageIsClose = window.localStorage.getItem('message-close')
+  const [key, setKey] = useState(null)
+  useEffect(() => {
+    setKey(localStorage.getItem('message-close'))
+  }, [])
   return (
     <>
-      {!messageIsClose && <MessageBlock/>}
+      {!key && <MessageBlock/>}
     </>
   )
 }

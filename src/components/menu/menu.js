@@ -28,6 +28,10 @@ const MenuList = () => {
       "name": "時刻情報正規化"
     },
     {
+      "link": "/kanji",
+      "name": "漢字解"
+    },
+    {
       "link": "/about",
       "name": "关于本站"
     }
