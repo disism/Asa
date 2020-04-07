@@ -15,7 +15,7 @@ const closeButtonStyle = {
   margin: '0 0 0 1rem'
 }
 const MessageBlock = () => {
-  const messageSection = useRef(null)
+  const messageSection = useRef(false)
   const handleCloseMessage = () => {
     messageSection.current.style.display = 'none'
     localStorage.setItem('message-close', 'message-is-close')
@@ -30,10 +30,12 @@ const MessageBlock = () => {
   )
 }
 function Message() {
-  const [key, setKey] = useState(null)
+  const [key, setKey] = useState(false)
+
   useEffect(() => {
     setKey(localStorage.getItem('message-close'))
   }, [])
+
   return (
     <>
       {!key && <MessageBlock/>}

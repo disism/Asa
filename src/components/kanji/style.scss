@@ -1,0 +1,81 @@
+@import "src/assets/scss/var.scss";
+
+$margin-size: 0.3rem;
+$kanji-heigh: 2.5rem;
+
+.kanji-words-section {
+  border-bottom: 1px solid saddlebrown;
+  padding: 1rem 0 ;
+}
+
+.kanji {
+  input {
+    resize: vertical;
+    border: 2px solid antiquewhite;
+    height: $kanji-heigh;
+    padding: $margin-size;
+    border-radius: $margin-size 0 0 $margin-size;
+
+    &:focus {
+      outline: none;
+      border: 2px dashed $rurikon;
+      border-radius: $margin-size 0 0 $margin-size;
+    }
+  }
+  button {
+    height: $kanji-heigh;
+    border-radius: 0 $margin-size $margin-size 0;
+    background-color: antiquewhite;
+    color: #6A4C9C;
+  }
+}
+
+.kanji-result {
+  border: 2px solid antiquewhite;
+  border-radius: $margin-size;
+  padding: $margin-size;
+  margin-bottom: 1rem;
+}
+
+.kanji-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  .kanji-section-left {
+    font-size: 10rem;
+    align-items: center;
+    border: 2px solid #0b346e;
+    padding: 2rem;
+    border-radius: $margin-size;
+
+  }
+  .kanji-section-right {
+    padding: 1rem;
+  }
+  @media (max-width: $mobile) {
+    flex-direction: column;
+  }
+}
+
+.pagination-list {
+  display: flex;
+  overflow: auto;
+  @media (max-width: $mobile) {
+    width: 90vw;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0.2rem;
+  }
+  li {
+    border-radius: 0.34rem;
+    color: white;
+    padding: 0.3rem;
+    width: 2rem;
+    text-align: center;
+    background-color: #6A4C9C;
+  }
+}

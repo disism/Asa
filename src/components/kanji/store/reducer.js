@@ -13,6 +13,12 @@ const reducer = (state, action) => {
         error: '',
         isLoading: false
       }
+    case 'KANA_FETCH_SUCCESS':
+      return {
+        kana_data: action.payload,
+        error: '',
+        isLoading: false
+      }
     case 'FETCH_ERROR':
       return {
         data: [],

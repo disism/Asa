@@ -38,11 +38,34 @@
     padding: 1rem 0;
   }
 
-  .goo {
-    .goo-image {
+  .api-link {
+    display: flex;
+    flex-direction: row;
+    @media (max-width: $mobile) {
+        flex-direction: column;
+    }
+    @mixin api-link-block{
       border-radius: 0.5rem;
       background-color: whitesmoke;
       width: 10rem;
+      height: 4rem;
+    }
+    .goo-image {
+      @include api-link-block;
+    }
+    .kanjikai {
+      @include api-link-block;
+      margin-left: 1rem;
+      text-align: center;
+      line-height: 4rem;
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      @media (max-width: $mobile) {
+        margin-top: 5px;
+        margin-left: 0;
+      }
     }
   }
 }
