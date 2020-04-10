@@ -3,6 +3,7 @@ import axios from "axios"
 import reducer from "./store/reducer"
 import InitialState from "./store/state"
 import "./style.scss"
+import KanjiPagination from "./pagination"
 
 const FetchWords = ({ kanjiValue }) => {
   const [state, dispatch] = useReducer(reducer, InitialState)
@@ -18,40 +19,30 @@ const FetchWords = ({ kanjiValue }) => {
       })
       },[kanjiValue])
 
-  const WordsResult = state.words_data
-  // // 总条数
-  // const total = WordsResult ? WordsResult.length : 0
-  // // 每页的条数
-  // const pagePer = 10
-  // // 分页数
-  // const paginationPer = Math.ceil(total / pagePer)
-  // const paginationPerToArray = [...Array(paginationPer).keys()]
-  // console.log(paginationPerToArray)
-  // // 初始状态
-  // // const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPrePage] = useState(20)
 
+  const indexOfLastPost = currentPage * postsPrePage
+  const indexOfFirstPost = indexOfLastPost - postsPrePage
+
+  const WordsResult = state.words_data && state.words_data.slice(indexOfFirstPost, indexOfLastPost)
+  console.log(WordsResult)
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
   return (
     <>
-      {/*<section className="pagination-list">*/}
-      {/*{paginationPerToArray.map((items, idx) => {*/}
-      {/*  return (*/}
-      {/*    <ul*/}
-      {/*      key={idx}>*/}
-      {/*      <Link to={`kanji/${items + 1}`}><li>{items + 1}</li></Link>*/}
-      {/*    </ul>*/}
-      {/*  )*/}
-      {/*})}*/}
-      {/*</section>*/}
+
       {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
-      <section>
-        <p> 共{WordsResult && WordsResult.length} 条数据 </p>
+      <section id="result">
+        <p> 共{state.words_data && state.words_data.length} 条数据 </p>
         {WordsResult && WordsResult.map((items) => {
           return items.variants.map((variants) => {
             return items.meanings.map((meanings, idx) => {
               return (
                 <section
                   className="kanji-words-section"
-                  key={idx}>
+                  key={idx}
+                >
                   <div>{variants.written} , {variants.pronounced}</div>
                   <div>{meanings.glosses[1]}</div>
                 </section>
@@ -60,6 +51,11 @@ const FetchWords = ({ kanjiValue }) => {
           })
         })}
       </section>}
+      <KanjiPagination
+        postPerPage={postsPrePage}
+        totalPosts={state.words_data && state.words_data.length}
+        paginate={paginate}
+      />
       {state.error}
     </>
   )
