@@ -6,6 +6,7 @@ import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 import Reducer from "../reducer"
 import InitialState from "../state"
+import Loading from "../loading"
 
 function KeywordRequireData() {
   const [state, dispatch] = useReducer(Reducer, InitialState)
@@ -60,7 +61,7 @@ function KeywordRequireData() {
       </div>
       <button type="button" onClick={handleClick}>提交</button>
       <div style={{marginBottom: `0.3rem`}}>关键词输出</div>
-      {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<div className="keyword-output">
+      {state.isLoading ? <Loading /> :<div className="keyword-output">
         {keywordData.keywords && keywordData.keywords.map((item,idx) => {
           return (
             <div

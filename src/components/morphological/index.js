@@ -5,6 +5,7 @@ import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 import Reducer from "../reducer"
 import InitialState from "../state"
+import Loading from "../loading"
 
 function MorphologicalDataRequire() {
   const [state, dispatch] = useReducer(Reducer, InitialState)
@@ -48,7 +49,7 @@ function MorphologicalDataRequire() {
         <button type="button" onClick={handleClick}>提交</button>
       </div>
       <div>解析输出</div>
-      {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :<div className="norp-output">
+      {state.isLoading ? <Loading /> :<div className="norp-output">
         <table>
           <thead>
           <tr>

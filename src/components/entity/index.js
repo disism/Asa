@@ -5,6 +5,7 @@ import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 import Reducer from "../reducer"
 import InitialState from "../state"
+import Loading from "../loading"
 
 function EntityDataRequire() {
   const [state, dispatch] = useReducer(Reducer, InitialState)
@@ -48,7 +49,7 @@ function EntityDataRequire() {
         <br/>
         <button type="button" onClick={handleChangeClick}>提交</button>
         <div>输出</div>
-        {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+        {state.isLoading ? <Loading /> :
           <div className="entity-output">
             {entityResult && entityResult.map((item, idx) => {
               return (

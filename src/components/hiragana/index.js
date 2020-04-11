@@ -5,6 +5,7 @@ import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 import Reducer from "../reducer"
 import InitialState from "../state"
+import Loading from "../loading"
 
 const KanaDataRequire = () => {
   const [kanji, setKanji] = useState('漢字')
@@ -56,7 +57,7 @@ const KanaDataRequire = () => {
 
 
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
-        {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+        {state.isLoading ? <Loading /> :
           <section className="hiragana-out-put">
             {hiraganaData.converted}
             {state.error}
