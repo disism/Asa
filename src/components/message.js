@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useLayoutEffect, useRef, useState } from "react"
 
 const messageStyle = {
   marginBottom: `1rem`,
@@ -32,7 +32,7 @@ const MessageBlock = () => {
 function Message() {
   const [key, setKey] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setKey(localStorage.getItem('message-close'))
   }, [])
 

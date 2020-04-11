@@ -4,6 +4,7 @@ import reducer from "./store/reducer"
 import InitialState from "./store/state"
 import "./style.scss"
 import KanjiPagination from "./pagination"
+import Loading from "../loading"
 
 const FetchWords = ({ kanjiValue }) => {
   const [state, dispatch] = useReducer(reducer, InitialState)
@@ -32,7 +33,7 @@ const FetchWords = ({ kanjiValue }) => {
   return (
     <>
 
-      {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+      {state.isLoading ? <Loading/> :
       <section id="result">
         <p> 共{state.words_data && state.words_data.length} 条数据 </p>
         {WordsResult && WordsResult.map((items) => {
@@ -80,7 +81,7 @@ const FetchKanji = ({ kanjiValue }) => {
 
   return (
     <h1>
-      {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+      {state.isLoading ? <Loading /> :
         <section>
         {KanjiData &&
         <div className="kanji-section">
@@ -119,7 +120,7 @@ const FetchReading = ({ kanaValue }) => {
   const kanaData = state.kana_data
   return (
     <>
-      {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> :
+      {state.isLoading ? <Loading /> :
       <section className="kanji-result">
         {kanaData &&
           <div>{kanaData.reading} , {kanaData.main_kanji[0]} , {kanaData.main_kanji[1]}</div>

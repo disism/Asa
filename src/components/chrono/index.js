@@ -5,6 +5,7 @@ import Message from "../message"
 import { APP_ID, baseUrl } from "../../api/config"
 import Reducer from "../reducer"
 import InitialState from "../state"
+import Loading from "../loading"
 
 
 function ChronoDataRequire() {
@@ -50,7 +51,7 @@ function ChronoDataRequire() {
       </div>
       <button type="button" onClick={handleChangeClick}>提交</button>
       <div>结果输出</div>
-      {state.isLoading ? <div className="loading"> 少々お待ちくださいませ... </div> : <div className="chrono-output">
+      {state.isLoading ? <Loading /> : <div className="chrono-output">
         {dataRes && dataRes.map((item, idx) => {
           return (
             <div key={idx}>
