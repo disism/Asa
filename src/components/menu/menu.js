@@ -1,3 +1,4 @@
+
 import React from "react"
 import { Link } from "gatsby"
 
@@ -30,10 +31,6 @@ const MenuList = () => {
     {
       "link": "/kanji",
       "name": "漢字解"
-    },
-    {
-      "link": "/about",
-      "name": "关于本站"
     }
   ]
   return (
@@ -47,6 +44,9 @@ const MenuList = () => {
           </div>
         )
       })}
+      <li>
+        <a href="https://disism.com/software/asa/" target="__blink">关于本站</a>
+      </li>
     </ul>
   )
 }
