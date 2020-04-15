@@ -1,11 +1,17 @@
 import React, { useEffect, useReducer, useRef, useState } from "react"
 import axios from "axios"
-import reducer from "./store/reducer"
-import InitialState from "./store/state"
+import reducer from "./reducer/reducer"
+import InitialState from "./reducer/state"
 import "./style.scss"
 import KanjiPagination from "./pagination"
 import Loading from "../loading"
 
+/***
+ * Fetch Words Api Component
+ * @param kanjiValue
+ * @returns {*}
+ * @constructor
+ */
 const FetchWords = ({ kanjiValue }) => {
   const [state, dispatch] = useReducer(reducer, InitialState)
 
@@ -30,6 +36,7 @@ const FetchWords = ({ kanjiValue }) => {
   console.log(WordsResult)
 
   const paginate = pageNumber => setCurrentPage(pageNumber)
+
   return (
     <>
 
@@ -60,9 +67,14 @@ const FetchWords = ({ kanjiValue }) => {
       {state.error}
     </>
   )
-
 }
 
+/***
+ * Fetch Kanji Api Component
+ * @param kanjiValue
+ * @returns {*}
+ * @constructor
+ */
 const FetchKanji = ({ kanjiValue }) => {
   const [state, dispatch] = useReducer(reducer, InitialState)
   useEffect(() => {
@@ -103,6 +115,12 @@ const FetchKanji = ({ kanjiValue }) => {
   )
 }
 
+/***
+ * Fetch Reading Api Component
+ * @param kanaValue
+ * @returns {*}
+ * @constructor
+ */
 const FetchReading = ({ kanaValue }) => {
   const [state, dispatch] = useReducer(reducer, InitialState)
   useEffect(() => {

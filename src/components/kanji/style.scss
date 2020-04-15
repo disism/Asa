@@ -59,9 +59,13 @@ $kanji-heigh: 2.5rem;
   }
 }
 
+/**
+  PAGINATION
+ */
 .pagination-list {
   display: flex;
   overflow: auto;
+
   @media (max-width: $mobile) {
     width: 90vw;
   }
@@ -72,13 +76,13 @@ $kanji-heigh: 2.5rem;
   }
   li {
     margin: 1rem 0;
-    
     a {
       color: white;
       border-radius: 0.34rem;
-      padding: 1rem;
+      padding: .6rem 1rem;
       text-align: center;
       background-color: #6A4C9C;
+      text-decoration: none;
     }
   }
 }
