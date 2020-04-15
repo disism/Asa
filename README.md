@@ -2,33 +2,16 @@
 
 ## Features
 
-Japanese Hiragana Conversion
+1. ひらがな化(Japanese Hiragana Conversion)
+2. 固有表現抽出(Japanese Named Entity Extraction)
 
-ひらがな化
+3. キーワード抽出(Japanese Keyword Extraction)
 
--
+4. 形態素解析(Japanese Morphological Analysis)
 
-Japanese Named Entity Extraction
+5. 時刻情報正規化(Japanese Time Normalization)
 
-固有表現抽出
-
--
-
-Japanese Keyword Extraction
-
-キーワード抽出
-
--
-
-Japanese Morphological Analysis
-
-形態素解析
-
--
-
-Japanese  Time Normalization
-
-時刻情報正規化
+6. 漢字解
 
 ## Quick start
 
@@ -50,29 +33,13 @@ npm install
 gatsby develop
 ```
 
-## What's inside?
+## Gatsby
 
-    ├─assets
-    │  ├─icons
-    │  └─scss
-    ├─components
-    │  ├─chrono
-    │  ├─entity
-    │  ├─footer
-    │  ├─header
-    │  ├─hiragana
-    │  ├─home
-    │  ├─keyword
-    │  ├─morphological
-    │  └─sidebar
-    ├─images
-    └─pages
+ Built with [GATSBY](https://www.gatsbyjs.org/)
 
-## Thanks
+## About
 
-[Goo.ne.jp](https://labs.goo.ne.jp/api/)
-
-[netlify](https://netlify.com/)
+[Chinese Language](https://disism.com/software/asa/) | [Official Website](https://disism.com)
 
 ## Deploy
 
