@@ -2,6 +2,14 @@ import React from "react"
 import "./style.scss"
 import { Link } from "gatsby"
 
+/***
+ * Pagination Components
+ * @param postPerPage
+ * @param totalPosts
+ * @param paginate
+ * @returns {*}
+ * @constructor
+ */
 function KanjiPagination({ postPerPage, totalPosts, paginate }) {
   const pageNumbers = []
 
