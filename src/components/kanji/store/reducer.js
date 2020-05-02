@@ -1,4 +1,3 @@
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'WORDS_FETCH_SUCCESS':

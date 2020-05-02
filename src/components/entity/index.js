@@ -11,9 +11,10 @@ function EntityDataRequire() {
   const [state, dispatch] = useReducer(Reducer, InitialState)
   const [textChangeValue, setChangeTextValue] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
   const [resState, setResState] = useState('鈴木さんがきょうの9時30分に横浜に行きます。')
-
   const inputRef = useRef(null)
-
+  /**
+   * MOUNT
+   */
   useEffect(() => {
     inputRef.current.focus()
     dispatch({ type: 'LOADING_TRUE' })

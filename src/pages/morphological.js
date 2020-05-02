@@ -3,7 +3,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import MorphologicalDataRequire from "../components/morphological"
 
-
 function Morphological() {
   return (
     <Layout>

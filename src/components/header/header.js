@@ -11,9 +11,7 @@ const MenuListFunc = () => {
       <MenuList />
     </section>
   )
-
 }
-
 
 const Header = ({ siteTitle }) => {
   const [menu, setMenu] = useState(false)
