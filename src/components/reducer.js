@@ -1,4 +1,10 @@
-
+/***
+ * Master Reducer
+ * @param state
+ * @param action
+ * @returns {{isLoading: boolean, data: [], error: string}|*|{isLoading: boolean, data: *, error: string}}
+ * @constructor
+ */
 const Reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_SUCCESS':

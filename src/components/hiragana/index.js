@@ -12,7 +12,9 @@ const KanaDataRequire = () => {
   const [ChangeKanjiValue, setChangeKanjiValue] = useState('漢字')
   const inputRef = useRef(null)
   const [state, dispatch] = useReducer(Reducer, InitialState)
-
+  /**
+   * MOUNT
+   */
   useEffect( () => {
     inputRef.current.focus()
     dispatch({ type: 'LOADING_TRUE' })
@@ -51,11 +53,8 @@ const KanaDataRequire = () => {
             onChange={e => setKanji(e.target.value)}
           />
         </section>
-
         <button type="button" onClick={handleClick}>转换</button>
         <button type="button" onClick={handleClickCleanInput}>清除输入框</button>
-
-
         <div style={{margin: `0.3rem 0`}}>输出结果</div>
         {state.isLoading ? <Loading /> :
           <section className="hiragana-out-put">

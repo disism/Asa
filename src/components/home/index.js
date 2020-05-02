@@ -15,8 +15,6 @@ function Home() {
       }
     }
   `)
-
-
   const ListOfServices = [
     {
       "link": "/hiragana/",
@@ -58,7 +56,6 @@ function Home() {
 
   return (
     <section className="list-of-services">
-
       <section>
         <h1>功能一览</h1>
         <ul>

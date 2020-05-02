@@ -7,15 +7,14 @@ import Reducer from "../reducer"
 import InitialState from "../state"
 import Loading from "../loading"
 
-
 function ChronoDataRequire() {
   const [state, dispatch] = useReducer(Reducer, InitialState)
-
   const [textChangeValue, setChangeTextValue] = useState('今日の10時半に出かけます。')
   const [resState, setResState] = useState('今日の10時半に出かけます。')
-
   const inputRef = useRef(null)
-
+  /**
+   * MOUNT
+   */
   useEffect(() => {
     inputRef.current.focus()
     dispatch({ type: 'LOADING_TRUE' })
