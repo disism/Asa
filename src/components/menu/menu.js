@@ -45,7 +45,7 @@ const MenuList = () => {
         )
       })}
       <li>
-        <a href="https://disism.com/software/asa/" target="__blink">关于本站</a>
+        <a href="https://disism.com/works/asa/" target="__blink">关于本站</a>
       </li>
     </ul>
   )
